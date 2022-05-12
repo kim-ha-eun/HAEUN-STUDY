@@ -11,7 +11,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 
 public class LoggerInterceptor extends HandlerInterceptorAdapter{
-	//private static final Logger LOGGER = LoggerFactory.getLogger(LoggerInterceptor.class);
 
 	private Logger logger = LogManager.getLogger(LoggerInterceptor.class);
 
