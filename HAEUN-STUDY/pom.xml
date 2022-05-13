@@ -187,6 +187,15 @@
 		    <artifactId>osdt_cert</artifactId>
 		    <version>19.9.0.0</version>
 		</dependency>
+		
+        <!-- oracle 라이브러리 -->
+        <dependency>
+            <groupId>oracle.jdbc</groupId>
+            <artifactId>OracleDriver</artifactId>
+            <version>12.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc8.jar</systemPath>
+        </dependency>
 
 	</dependencies>
 	<build>
