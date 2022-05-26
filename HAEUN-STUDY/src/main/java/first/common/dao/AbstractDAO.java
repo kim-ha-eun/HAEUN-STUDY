@@ -1,6 +1,7 @@
 package first.common.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,7 +36,7 @@ public class AbstractDAO {
 		return sqlSession.delete(queryId, params);
 	}
 
-	public Object selectOne(String queryId){
+	public Object selectOne(String queryId, Map<String, Object> map){
 		printQueryId(queryId);
 		return sqlSession.selectOne(queryId);
 	}

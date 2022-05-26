@@ -2,21 +2,14 @@
 <beans xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing
 		infrastructure -->
 
 	<context:component-scan base-package="first" />
-
-	<mvc:annotation-driven>
-		<mvc:argument-resolvers>
-			<bean class="first.common.resolver.CustomMapArgumentResolver"></bean>
-		</mvc:argument-resolvers>
-	</mvc:annotation-driven>
-
 
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -25,8 +18,27 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<bean
-		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="first.common.resolver.CustomMapArgumentResolver"></bean>
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+
+	<!-- tiles -->
+ 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+ 		 p:order="1" p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView">
+	</bean>
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+     	<property name="definitions">
+        	<list>
+            	<value>classpath:/config/tiles/tiles-config.xml</value>
+            </list>
+        </property>
+        <!-- prepare 사용 설정 -->
+        <property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory" />
+    </bean>
 
 	<!-- jsonView -->
 	<!-- <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
@@ -35,7 +47,7 @@
 		/> -->
 
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
-		p:order="1" p:viewClass="org.springframework.web.servlet.view.JstlView"
+		p:order="2" p:viewClass="org.springframework.web.servlet.view.JstlView"
 		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
 	</bean>
 
