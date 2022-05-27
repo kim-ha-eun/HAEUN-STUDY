@@ -65,7 +65,7 @@ public class SampleController {
 		Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap());
 		model.addAttribute("map",map);
 
-		return "/sample/openBoardDetail";
+		return "/sample/boardDetail";
 	}
 
 

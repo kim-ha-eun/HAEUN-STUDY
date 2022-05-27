@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/include-taglib.jspf" %>
 
-<form id="commonForm" name="commonForm">
-	<input type="hidden" id="idx" name="idx"/>
+<form id="frm">
+	<input type="hidden" id="IDX" name="IDX"/>
 	<div>
 		<h2>글 목록</h2>
 		<table style="border:1px solid #ccc;width: 100%;">
@@ -51,14 +51,14 @@
 	})
 
 	function fn_openBoardWrite(){
-		$('#commonForm')[0].action = '/sample/openBoardWrite.do';
-		$('#commonForm')[0].submit();
+		$('#frm')[0].action = '/sample/openBoardWrite.do';
+		$('#frm')[0].submit();
 	}
 
 	function fn_openBoardDetail(idx){
-		$('#idx').val(idx);
-		$('#commonForm')[0].action = '/sample/openBoardDetail.do';
-		$('#commonForm')[0].submit();
+		$('#IDX').val(idx);
+		$('#frm')[0].action = '/sample/openBoardDetail.do';
+		$('#frm')[0].submit();
 	}
 
 </script>

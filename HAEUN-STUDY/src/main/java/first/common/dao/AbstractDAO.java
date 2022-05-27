@@ -36,9 +36,9 @@ public class AbstractDAO {
 		return sqlSession.delete(queryId, params);
 	}
 
-	public Object selectOne(String queryId, Map<String, Object> map){
+	public Object selectOne(String queryId, Object params){
 		printQueryId(queryId);
-		return sqlSession.selectOne(queryId);
+		return sqlSession.selectOne(queryId,params);
 	}
 
 	@SuppressWarnings("rawtypes")
