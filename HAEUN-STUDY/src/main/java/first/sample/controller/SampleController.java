@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import first.common.common.CommandMap;
 import first.sample.service.SampleService;
@@ -53,8 +54,8 @@ public class SampleController {
 	}
 
 	@RequestMapping(value="/sample/insertBoard.do")
-	public String insertBoard(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
-		sampleService.insertBoard(commandMap.getMap());
+	public String insertBoard(MultipartHttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		sampleService.insertBoard(commandMap.getMap(), req);
 
 		return "redirect:/sample/openSampleBoardList.do";
 	}
@@ -68,7 +69,28 @@ public class SampleController {
 		return "/sample/boardDetail";
 	}
 
+	@RequestMapping(value="/sample/openBoardUpdate.do")
+	public String openBoardUpdate(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap());
+		model.addAttribute("map",map);
 
+		return "/sample/boardUpdate";
+	}
+
+	@RequestMapping(value="/sample/updateBoard.do")
+	public String updateBoard(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		sampleService.updateBoard(commandMap.getMap());
+		model.addAttribute("IDX",commandMap.get("IDX"));
+
+		return "redirect:/sample/openBoardDetail.do";
+	}
+
+	@RequestMapping(value="/sample/deleteBoard.do")
+	public String deleteBoard(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		sampleService.deleteBoard(commandMap.getMap());
+
+		return "redirect:/sample/openSampleBoardList.do";
+	}
 
 
 

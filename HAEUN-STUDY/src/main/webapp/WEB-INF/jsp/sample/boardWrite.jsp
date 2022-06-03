@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/include/include-taglib.jspf" %>
 
 <div>
-	<form id="frm">
+	<form id="frm" naem="frm" method="post" enctype="multipart/form-data">
 		 <table class="board_view">
 		 	<colgroup>
 			 	<col width="15%">
@@ -21,6 +21,8 @@
 		 		</tr>
 		 	</tbody>
 		 </table>
+		 <input type="file" name="file">
+		 <br/><br/>
 		 <a href="javascript:void(0);" class="btn" id="write" >작성하기</a>
 		 <a href="javascript:void(0);" class="btn" id="list" >목록으로</a>
 	</form>

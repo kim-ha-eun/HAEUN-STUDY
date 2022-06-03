@@ -11,7 +11,7 @@
 			 	<col width="15%">
 			 	<col width="35%">
 		 	</colgroup>
-		 	<caption>게시글 상세</caption>
+		 	<caption>게시글 수정</caption>
 		 	<tbody>
 		 		<tr>
 		 			<th scope="row">글 번호</th>
@@ -27,15 +27,16 @@
 		 		</tr>
 		 		<tr>
 					<th scope="row">제목</th>
-					<td colspan="3">${map.TITLE }</td>
+					<td colspan="3"><input type="text" id="TITLE" name="TITLE" class="wdp_90" value="${map.TITLE }"/></td>
 				</tr>
 				<tr>
-					<td colspan="4">${map.CONTENTS }</td>
+					<td colspan="4" class="view_text"><textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS">${map.CONTENTS }</textarea></td>
 				</tr>
 		 	</tbody>
 		 </table>
 		 <a href="#this" class="btn" id="list">목록으로</a>
 		 <a href="#this" class="btn" id="update">수정하기</a>
+		 <a href="#this" class="btn" id="delete">삭제하기</a>
 	</form>
 </div>
 
@@ -46,8 +47,12 @@
 		})
 
 		$("#update").on("click", function(e){
-			fn_openBoardUpdate();
+			fn_updateBoard();
 		})
+
+		$("#delete").on("click", function(e){ //삭제하기 버튼
+			fn_deleteBoard();
+		});
 
 	});
 
@@ -57,8 +62,13 @@
 
 	}
 
-	function fn_openBoardUpdate(){
-		$('#frm')[0].action = '/sample/openBoardUpdate.do';
+	function fn_updateBoard(){
+		$('#frm')[0].action = '/sample/updateBoard.do';
+		$('#frm')[0].submit();
+	}
+
+	function fn_deleteBoard(){
+		$('#frm')[0].action = '/sample/deleteBoard.do';
 		$('#frm')[0].submit();
 	}
 </script>

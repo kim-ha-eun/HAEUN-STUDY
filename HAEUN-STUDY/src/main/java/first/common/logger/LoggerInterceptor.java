@@ -17,7 +17,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		if (logger.isDebugEnabled()) {
-			logger.debug("====================================== START ======================================");
+			logger.debug("====================================== START ====================================================================================");
 			logger.debug(" Request URI \t: " + request.getRequestURI());
 		}
 
@@ -26,7 +26,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter{
 
 	@Override public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		if (logger.isDebugEnabled()) {
-			logger.debug("====================================== END ======================================\n");
+			logger.debug("====================================== END ======================================================================================\n");
 		}
 	}
 
