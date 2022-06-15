@@ -64,7 +64,8 @@ public class SampleController {
 	@RequestMapping(value="/sample/openBoardDetail.do")
 	public String openBoardDetail(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
 		Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap());
-		model.addAttribute("map",map);
+		model.addAttribute("map",map.get("map"));
+		model.addAttribute("list", map.get("list"));
 
 		return "/sample/boardDetail";
 	}
@@ -72,14 +73,15 @@ public class SampleController {
 	@RequestMapping(value="/sample/openBoardUpdate.do")
 	public String openBoardUpdate(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
 		Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap());
-		model.addAttribute("map",map);
+		model.addAttribute("map",map.get("map"));
+		model.addAttribute("list", map.get("list"));
 
 		return "/sample/boardUpdate";
 	}
 
 	@RequestMapping(value="/sample/updateBoard.do")
-	public String updateBoard(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
-		sampleService.updateBoard(commandMap.getMap());
+	public String updateBoard(MultipartHttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		sampleService.updateBoard(commandMap.getMap(),req);
 		model.addAttribute("IDX",commandMap.get("IDX"));
 
 		return "redirect:/sample/openBoardDetail.do";

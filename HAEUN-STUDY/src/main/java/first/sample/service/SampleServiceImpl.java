@@ -1,5 +1,6 @@
 package first.sample.service;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import first.common.util.FileUtils;
 import first.sample.dao.SampleDAO;
 
 @Service("sampleService")
@@ -21,6 +23,9 @@ public class SampleServiceImpl implements SampleService{
 
 	@Resource(name="sampleDAO")
 	public SampleDAO sampleDAO;
+
+	@Resource(name="fileUtils")
+	private FileUtils fileUtils;
 
 
 	@Override
@@ -32,31 +37,42 @@ public class SampleServiceImpl implements SampleService{
 	public void insertBoard(Map<String, Object> map, MultipartHttpServletRequest req) throws Exception {
 		sampleDAO.insertBoard(map);
 
-		Iterator<String> iterator = req.getFileNames();
-		MultipartFile multipartFile = null;
-		while(iterator.hasNext()){
-			multipartFile = req.getFile(iterator.next());
-			if(multipartFile.isEmpty() == false){
-				 logger.debug("------------- file start -------------");
-				 logger.debug("name : "+multipartFile.getName());
-				 logger.debug("filename : "+multipartFile.getOriginalFilename());
-				 logger.debug("size : "+multipartFile.getSize());
-				 logger.debug("-------------- file end --------------\n");
-			}
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, req);
+		for(int i=0, size=list.size(); i<size; i++){
+			sampleDAO.insertFile(list.get(i));
 		}
 	}
 
 	@Override
 	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
 		sampleDAO.updateHitCnt(map);
-		Map<String, Object> resultMap = sampleDAO.selectBoardDetail(map);
+		Map<String, Object> resultMap = new HashMap<String,Object>();
+		Map<String, Object> tempMap = sampleDAO.selectBoardDetail(map);
+		resultMap.put("map", tempMap);
+
+		List<Map<String,Object>> list = sampleDAO.selectFileList(map);
+		resultMap.put("list", list);
+
 		return resultMap;
 	}
 
 
 	@Override
-	public void updateBoard(Map<String, Object> map) throws Exception{
+	public void updateBoard(Map<String, Object> map, MultipartHttpServletRequest req) throws Exception{
 		sampleDAO.updateBoard(map);
+
+		sampleDAO.deleteFileList(map);
+		List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo(map, req);
+		Map<String,Object> tempMap = null;
+		for(int i=0, size=list.size(); i<size; i++){
+			tempMap = list.get(i);
+			if(tempMap.get("IS_NEW").equals("Y")){
+				sampleDAO.insertFile(tempMap);
+			}
+			else{
+				sampleDAO.updateFile(tempMap);
+			}
+		}
 	}
 
 

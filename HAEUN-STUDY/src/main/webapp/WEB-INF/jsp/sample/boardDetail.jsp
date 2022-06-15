@@ -4,6 +4,7 @@
 <div>
 	<form id="frm">
 		<input type="hidden" id="IDX" name="IDX" value="${map.IDX }"/>
+		<input type="hidden" id="FEIL_IDX" name="FEIL_IDX">
 		<table class="board_view">
 		 	<colgroup>
 			 	<col width="15%">
@@ -31,6 +32,24 @@
 				</tr>
 				<tr>
 					<td colspan="4">${map.CONTENTS }</td>
+				</tr>
+				<tr>
+					<th scope="row">첨부파일</th>
+					<td colspan="3">
+						<c:choose >
+						<c:when test="${list.size() > 0}">
+							<c:forEach var="row" items="${list }">
+								<p>
+									<a href="javascript:void(0);" onclick="fn_downloadFile(${row.IDX })" name="file">${row.ORIGINAL_FILE_NAME }</a>
+									(${row.FILE_SIZE }kb)
+								</p>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							첨부파일이 없습니다.
+						</c:otherwise>
+						</c:choose>
+					</td>
 				</tr>
 		 	</tbody>
 		 </table>
@@ -61,4 +80,11 @@
 		$('#frm')[0].action = '/sample/openBoardUpdate.do';
 		$('#frm')[0].submit();
 	}
+
+	function fn_downloadFile(idx){
+		$('#FEIL_IDX').val(idx);
+		$('#frm')[0].action = '/common/downloadFile.do';
+		$('#frm')[0].submit();
+	}
+
 </script>
