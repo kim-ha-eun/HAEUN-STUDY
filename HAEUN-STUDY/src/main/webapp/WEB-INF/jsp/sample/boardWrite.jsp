@@ -57,13 +57,13 @@
 	});
 
 	function fn_openBoardList(){
-		$('#frm')[0].action = '/sample/openSampleBoardList.do';
+		$('#frm')[0].action = "<c:url value='/sample/openSampleBoardList.do' />";
 		$('#frm')[0].submit();
 
 	}
 
 	function fn_insertBoard(){
-		$('#frm')[0].action = '/sample/insertBoard.do';
+		$('#frm')[0].action = "<c:url value='/sample/insertBoard.do' />";
 		$('#frm')[0].submit();
 	}
 

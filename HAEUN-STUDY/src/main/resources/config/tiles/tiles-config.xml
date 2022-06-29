@@ -18,6 +18,7 @@
 	<!-- business template -->
 	<definition name="tiles-business" template="/WEB-INF/jsp/tiles/tiles-business.jsp">
 		<put-attribute name="header" value="/WEB-INF/jsp/tiles/tiles-header.jsp" />
+		<put-attribute name="sideBar" value="/WEB-INF/jsp/tiles/tiles-sideBar.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/tiles/tiles-footer.jsp" />
 	</definition>
@@ -31,7 +32,7 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
 	</definition>
 
-	    <definition name="/*/*/*" extends="tiles-business">
+	<definition name="/*/*/*" extends="tiles-business">
         <put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp" />
     </definition>
 

@@ -51,13 +51,13 @@
 	})
 
 	function fn_openBoardWrite(){
-		$('#frm')[0].action = '/sample/openBoardWrite.do';
+		$('#frm')[0].action = "<c:url value='/sample/openBoardWrite.do' />";
 		$('#frm')[0].submit();
 	}
 
 	function fn_openBoardDetail(idx){
 		$('#IDX').val(idx);
-		$('#frm')[0].action = '/sample/openBoardDetail.do';
+		$('#frm')[0].action = "<c:url value='/sample/openBoardDetail.do' />";
 		$('#frm')[0].submit();
 	}
 

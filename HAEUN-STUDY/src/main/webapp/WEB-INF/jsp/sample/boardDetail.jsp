@@ -71,19 +71,19 @@
 	});
 
 	function fn_openBoardList(){
-		$('#frm')[0].action = '/sample/openSampleBoardList.do';
+		$('#frm')[0].action = "<c:url value='/sample/openSampleBoardList.do' />";
 		$('#frm')[0].submit();
 
 	}
 
 	function fn_openBoardUpdate(){
-		$('#frm')[0].action = '/sample/openBoardUpdate.do';
+		$('#frm')[0].action =  "<c:url value='/sample/openBoardUpdate.do' />";
 		$('#frm')[0].submit();
 	}
 
 	function fn_downloadFile(idx){
 		$('#FEIL_IDX').val(idx);
-		$('#frm')[0].action = '/common/downloadFile.do';
+		$('#frm')[0].action =  "<c:url value='/common/downloadFile.do' />";
 		$('#frm')[0].submit();
 	}
 

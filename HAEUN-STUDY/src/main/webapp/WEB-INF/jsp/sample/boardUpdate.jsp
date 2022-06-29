@@ -30,7 +30,7 @@
 					<td colspan="3"><input type="text" id="TITLE" name="TITLE" class="wdp_90" value="${map.TITLE }"/></td>
 				</tr>
 				<tr>
-					<td colspan="4" class="view_text"><textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS">${map.CONTENTS }</textarea></td>
+					<td colspan="4" class="view_text"><textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS" style="width:100%">${map.CONTENTS }</textarea></td>
 				</tr>
 				<tr>
 					<th scope="row">첨부파일</th>
@@ -98,18 +98,17 @@
 	});
 
 	function fn_openBoardList(){
-		$('#frm')[0].action = '/sample/openSampleBoardList.do';
+		$('#frm')[0].action = "<c:url value='/sample/openSampleBoardList.do' />";
 		$('#frm')[0].submit();
 
 	}
-
 	function fn_updateBoard(){
-		$('#frm')[0].action = '/sample/updateBoard.do';
+		$('#frm')[0].action = "<c:url value='/sample/updateBoard.do' />";
 		$('#frm')[0].submit();
 	}
 
 	function fn_deleteBoard(){
-		$('#frm')[0].action = '/sample/deleteBoard.do';
+		$('#frm')[0].action = "<c:url value='/sample/deleteBoard.do' />";
 		$('#frm')[0].submit();
 	}
 </script>
