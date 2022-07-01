@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/include-taglib.jspf" %>
 <%@ include file="/WEB-INF/jsp/include/include-header.jspf" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="application" />
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -8,8 +9,25 @@
 		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>hnBlog</title>
+		<script type="text/javascript">
+			const _contextPath = '<c:out value="${contextPath}" />';
+
+			function moveMenu(menuUrl) {
+				url = _contextPath +menuUrl;
+				submitPost('leftMenuForm', url);
+			}
+
+			$(document).ready(function() {
+			    $(".dropdown-toggle").dropdown();
+			    $(".custom-dropdown").dropdown();
+			    //$().dropdown('hide')
+			});
+		</script>
 	</head>
 	<body>
+		<form id="leftMenuForm" name="leftMenuForm" action="#" method="post">
+			<input type="hidden" name="moveUrl" id="moveUrl" value=""/>
+		</form>
 		<!--*******************Preloader start********************-->
 		<div id="preloader">
 		    <div class="loader">

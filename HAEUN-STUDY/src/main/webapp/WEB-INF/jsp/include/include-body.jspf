@@ -6,22 +6,26 @@
 <script src="<c:url value='/js/gleek.js'/>"></script>
 <script src="<c:url value='/js/styleSwitcher.js'/>"></script>
 
-<!-- Chartjs -->
-<script src="<c:url value='/plugins/chart.js/Chart.bundle.min.js'/>"></script>
-<!-- Circle progress -->
-<script src="<c:url value='/plugins/circle-progress/circle-progress.min.js'/>"></script>
-<!-- Datamap -->
-<script src="<c:url value='/plugins/d3v3/index.js'/>"></script>
-<script src="<c:url value='/plugins/topojson/topojson.min.js'/>"></script>
-<script src="<c:url value='/plugins/datamaps/datamaps.world.min.js'/>"></script>
-<!-- Morrisjs -->
-<script src="<c:url value='/plugins/raphael/raphael.min.js'/>"></script>
-<script src="<c:url value='/plugins/morris/morris.min.js'/>"></script>
-<!-- Pignose Calender -->
-<script src="<c:url value='/plugins/moment/moment.min.js'/>"></script>
-<script src="<c:url value='/plugins/pg-calendar/js/pignose.calendar.min.js'/>"></script>
-<!-- ChartistJS -->
-<script src="<c:url value='/plugins/chartist/js/chartist.min.js'/>"></script>
-<script src="<c:url value='/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js'/>"></script>
+<!-- <!-- Chartjs --> -->
+<%-- <script src="<c:url value='/plugins/chart.js/Chart.bundle.min.js'/>"></script> --%>
+<!-- <!-- Circle progress --> -->
+<%-- <script src="<c:url value='/plugins/circle-progress/circle-progress.min.js'/>"></script> --%>
+<!-- <!-- Datamap --> -->
+<%-- <script src="<c:url value='/plugins/d3v3/index.js'/>"></script> --%>
+<%-- <script src="<c:url value='/plugins/topojson/topojson.min.js'/>"></script> --%>
+<%-- <script src="<c:url value='/plugins/datamaps/datamaps.world.min.js'/>"></script> --%>
+<!-- <!-- Morrisjs --> -->
+<%-- <script src="<c:url value='/plugins/raphael/raphael.min.js'/>"></script> --%>
+<%-- <script src="<c:url value='/plugins/morris/morris.min.js'/>"></script> --%>
+<!-- <!-- Pignose Calender --> -->
+<%-- <script src="<c:url value='/plugins/moment/moment.min.js'/>"></script> --%>
+<%-- <script src="<c:url value='/plugins/pg-calendar/js/pignose.calendar.min.js'/>"></script> --%>
+<!-- <!-- ChartistJS --> -->
+<%-- <script src="<c:url value='/plugins/chartist/js/chartist.min.js'/>"></script> --%>
+<%-- <script src="<c:url value='/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js'/>"></script> --%>
 
-<script src="<c:url value='/js/dashboard/dashboard-1.js'/>"></script>
+<%-- <script src="<c:url value='/js/dashboard/dashboard-1.js'/>"></script> --%>
+
+<script src="<c:url value='/plugins/tables/js/jquery.dataTables.min.js'/>"></script>
+<script src="<c:url value='/plugins/tables/js/datatable/dataTables.bootstrap4.min.js'/>"></script>
+<script src="<c:url value='/plugins/tables/js/datatable-init/datatable-basic.min.js'/>"></script>

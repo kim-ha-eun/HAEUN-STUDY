@@ -13,6 +13,20 @@ function gfn_isNull(str) {
 	return false;
 }
 
+/**
+ * Post-Submit
+ * @param formId
+ * @param url
+ * @returns
+ */
+function submitPost(formId, url) {
+	$('#' + formId).attr({
+		action : url,
+		method : 'post',
+		target : '_self'
+	}).submit();
+}
+
 //function ComSubmit(opt_formId) {
 //	this.formId = gfn_isNull(opt_formId) == true ? "commonForm" : opt_formId;
 //	this.url = "";

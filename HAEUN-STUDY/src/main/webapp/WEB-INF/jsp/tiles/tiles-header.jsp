@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ include file="/WEB-INF/jsp/include/include-taglib.jspf" %>
-
 <!--**********************************Nav header start***********************************-->
 <div class="nav-header">
     <div class="brand-logo">
-        <a href="index.html">
-            <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-            <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+        <a href="javascript:void()" onclick="moveMenu('/main.do')">
+            <b class="logo-abbr"><img src="<c:url value='/images/logo.png'/>" alt=""> </b>
+            <span class="logo-compact"><img src="<c:url value='/images/logo-compact.png'/>" alt=""></span>
             <span class="brand-title">
-                <img src="images/logo-text.png" alt="">
+                <img src="<c:url value='/images/logo-text.png'/>" alt="">
             </span>
         </a>
     </div>
@@ -25,26 +24,26 @@
                 <span class="toggle-icon"><i class="icon-menu"></i></span>
             </div>
         </div>
-        <div class="header-left">
-            <div class="input-group icons">
-                <div class="input-group-prepend">
-                    <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
-                </div>
-                <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
-                <div class="drop-down animated flipInX d-md-none">
-                    <form action="#">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </form>
-                </div>
-            </div>
-        </div>
+<!--         <div class="header-left"> -->
+<!--             <div class="input-group icons"> -->
+<!--                 <div class="input-group-prepend"> -->
+<!--                     <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span> -->
+<!--                 </div> -->
+<!--                 <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard"> -->
+<!--                 <div class="drop-down animated flipInX d-md-none"> -->
+<!--                     <form action="#"> -->
+<!--                         <input type="text" class="form-control" placeholder="Search"> -->
+<!--                     </form> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
         <div class="header-right">
             <ul class="clearfix">
-                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle">
                         <i class="mdi mdi-email-outline"></i>
                         <span class="badge badge-pill gradient-1">3</span>
                     </a>
-                    <div class="drop-down animated fadeIn dropdown-menu">
+                    <div class="dropdown-menu animated fadeIn dropdown-menu">
                         <div class="dropdown-content-heading d-flex justify-content-between">
                             <span class="">3 New Messages</span>
                             <a href="javascript:void()" class="d-inline-block">
@@ -55,7 +54,7 @@
                             <ul>
                                 <li class="notification-unread">
                                     <a href="javascript:void()">
-                                        <img class="float-left mr-3 avatar-img" src="images/avatar/1.jpg" alt="">
+                                        <img class="float-left mr-3 avatar-img" src="<c:url value='/images/avatar/1.jpg'/>" alt="">
                                         <div class="notification-content">
                                             <div class="notification-heading">Saiful Islam</div>
                                             <div class="notification-timestamp">08 Hours ago</div>
@@ -65,7 +64,7 @@
                                 </li>
                                 <li class="notification-unread">
                                     <a href="javascript:void()">
-                                        <img class="float-left mr-3 avatar-img" src="images/avatar/2.jpg" alt="">
+                                        <img class="float-left mr-3 avatar-img" src="<c:url value='/images/avatar/2.jpg'/>" alt="">
                                         <div class="notification-content">
                                             <div class="notification-heading">Adam Smith</div>
                                             <div class="notification-timestamp">08 Hours ago</div>
@@ -75,7 +74,7 @@
                                 </li>
                                 <li>
                                     <a href="javascript:void()">
-                                        <img class="float-left mr-3 avatar-img" src="images/avatar/3.jpg" alt="">
+                                        <img class="float-left mr-3 avatar-img" src="<c:url value='/images/avatar/3.jpg'/>" alt="">
                                         <div class="notification-content">
                                             <div class="notification-heading">Barak Obama</div>
                                             <div class="notification-timestamp">08 Hours ago</div>
@@ -85,7 +84,7 @@
                                 </li>
                                 <li>
                                     <a href="javascript:void()">
-                                        <img class="float-left mr-3 avatar-img" src="images/avatar/4.jpg" alt="">
+                                        <img class="float-left mr-3 avatar-img" src="<c:url value='/images/avatar/4.jpg'/>" alt="">
                                         <div class="notification-content">
                                             <div class="notification-heading">Hilari Clinton</div>
                                             <div class="notification-timestamp">08 Hours ago</div>
@@ -98,7 +97,8 @@
                         </div>
                     </div>
                 </li>
-                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                <li class="icons dropdown">
+                	<a href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle">
                         <i class="mdi mdi-bell-outline"></i>
                         <span class="badge badge-pill gradient-2">3</span>
                     </a>
@@ -152,24 +152,13 @@
                         </div>
                     </div>
                 </li>
-                <li class="icons dropdown d-none d-md-flex">
-                    <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
-                        <span>English</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
-                    </a>
-                    <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
-                        <div class="dropdown-content-body">
-                            <ul>
-                                <li><a href="javascript:void()">English</a></li>
-                                <li><a href="javascript:void()">Dutch</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="icons dropdown">
-                    <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                        <span class="activity active"></span>
-                        <img src="images/user/1.png" height="40" width="40" alt="">
-                    </div>
+                <li class="icons dropdown custom-dropdown">
+                	<a href="javascript:void(0)" data-toggle="dropdown" class="custom-dropdown">
+	                    <div class="user-img c-pointer position-relative">
+	                        <span class="activity active"></span>
+	                        <img src="<c:url value='/images/user/1.png'/>" height="40" width="40" alt="">
+	                    </div>
+	                </a>
                     <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                         <div class="dropdown-content-body">
                             <ul>

@@ -1,4 +1,4 @@
-package first.hnBlog.main.controller;
+package first.hnBlog.feeBoard.controller;
 
 import java.util.Iterator;
 import java.util.List;
@@ -20,15 +20,25 @@ import first.hnBlog.feeBoard.service.FreeBoardService;
 import first.sample.service.SampleService;
 
 @Controller
-public class MainController {
+public class FreeBoardController {
 	Logger logger  = LogManager.getLogger(this.getClass());
 
+	@Resource(name="freeBoardService")
+	private FreeBoardService freeBoardService;
 
-	@RequestMapping(value="/main.do")
-	public String openMain(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
-		return "/main/main";
+	@RequestMapping(value="/freeBoard/freeBordList.do")
+	public String selectFreeBoardList(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		List<Map<String, Object>> list = freeBoardService.selectBoardList(commandMap.getMap());
+		model.addAttribute("list",list);
+
+		return "/freeBoard/freeBoardList";
 	}
 
+	@RequestMapping(value="/board/openFreeBoardWrite.do")
+	public String openFreeBoardWrite(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+
+		return "/freeBoard/freeBoardWrite";
+	}
 
 
 

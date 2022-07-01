@@ -173,7 +173,7 @@
 	            <div class="card">
 	                <div class="card-body">
 	                    <div class="text-center">
-	                        <img src="./images/users/8.jpg" class="rounded-circle" alt="">
+	                        <img src="<c:url value='/images/users/8.jpg'/>" class="rounded-circle" alt="">
 	                        <h5 class="mt-3 mb-1">Ana Liem</h5>
 	                        <p class="m-0">Senior Manager</p>
 	                        <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
@@ -185,7 +185,7 @@
 	            <div class="card">
 	                <div class="card-body">
 	                    <div class="text-center">
-	                        <img src="./images/users/5.jpg" class="rounded-circle" alt="">
+	                        <img src="<c:url value='/images/users/5.jpg'/>" class="rounded-circle" alt="">
 	                        <h5 class="mt-3 mb-1">John Abraham</h5>
 	                        <p class="m-0">Store Manager</p>
 	                        <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
@@ -197,7 +197,7 @@
 	            <div class="card">
 	                <div class="card-body">
 	                    <div class="text-center">
-	                        <img src="./images/users/7.jpg" class="rounded-circle" alt="">
+	                        <img src="<c:url value='/images/users/7.jpg'/>" class="rounded-circle" alt="">
 	                        <h5 class="mt-3 mb-1">John Doe</h5>
 	                        <p class="m-0">Sales Man</p>
 	                        <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
@@ -209,7 +209,7 @@
 	            <div class="card">
 	                <div class="card-body">
 	                    <div class="text-center">
-	                        <img src="./images/users/1.jpg" class="rounded-circle" alt="">
+	                        <img src="<c:url value='/images/users/1.jpg'/>" class="rounded-circle" alt="">
 	                        <h5 class="mt-3 mb-1">Mehedi Titas</h5>
 	                        <p class="m-0">Online Marketer</p>
 	                        <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
@@ -239,7 +239,7 @@
 	                                </thead>
 	                                <tbody>
 	                                    <tr>
-	                                        <td><img src="./images/avatar/1.jpg" class=" rounded-circle mr-3" alt="">Sarah Smith</td>
+	                                        <td><img src="<c:url value='./images/avatar/1.jpg'/>" class=" rounded-circle mr-3" alt="">Sarah Smith</td>
 	                                        <td>iPhone X</td>
 	                                        <td>
 	                                            <span>United States</span>
