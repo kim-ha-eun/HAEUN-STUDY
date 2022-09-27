@@ -15,6 +15,26 @@
 	<!-- <put-attribute name="body" value="/WEB-INF/jsp/main/main.jsp" /> -->
 	<!-- </definition> -->
 
+    <!--########## Include Layout. ##########-->
+	<definition name="include-layout" template="/WEB-INF/jsp/tiles/includeLayout.jsp">
+		<put-attribute name="baseEmptyContent" value="" />
+	</definition>
+
+<!-- 	<definition name="/*/*/*Include" extends="include-layout"> -->
+<!-- 		<put-attribute name="baseEmptyContent" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp" /> -->
+<!-- 	</definition> -->
+	<definition name="/include/editor" extends="include-layout">
+		<put-attribute name="baseEmptyContent" value="/WEB-INF/jsp/include/editor.jsp" />
+	</definition>
+
+	<definition name="/include/editorView" extends="include-layout">
+		<put-attribute name="baseEmptyContent" value="/WEB-INF/jsp/include/editorView.jsp" />
+	</definition>
+<!-- 	<definition name="/*Include" extends="include-layout"> -->
+<!-- 		<put-attribute name="baseEmptyContent" value="/WEB-INF/jsp/{1}.jsp" /> -->
+<!-- 	</definition> -->
+
+
 	<!-- business template -->
 	<definition name="tiles-business" template="/WEB-INF/jsp/tiles/tiles-business.jsp">
 		<put-attribute name="header" value="/WEB-INF/jsp/tiles/tiles-header.jsp" />
@@ -35,5 +55,6 @@
 	<definition name="/*/*/*" extends="tiles-business">
         <put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp" />
     </definition>
+
 
 </tiles-definitions>

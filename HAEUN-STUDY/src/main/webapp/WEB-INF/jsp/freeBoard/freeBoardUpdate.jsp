@@ -43,10 +43,10 @@
                     <div class="form-group row">
                         <label class="col-form-label" for="TITLE" style="width: 62px; padding: 0.68rem 0.75rem;">제목<span class="text-danger">*</span></label>
                         <div style="position: relative;flex: 1 1 auto;width: 1%;">
-                            <input type="text" class="form-control" id="TITLE" name="TITLE" placeholder="제목을 입력하세요">
+                            <input type="text" class="form-control" id="TITLE" name="TITLE" value="${map.TITLE }">
                         </div>
                     </div>
-                    <iframe src="<c:url value='/editor.do' />" id="editorIframe" name="에디터" width="100%" style="height: 696px;border: none;">
+                    <iframe src="<c:url value='/editorUpdate.do?IDX=${map.IDX}' />" id="editorIframe" name="에디터" width="100%" style="height: 696px;border: none;">
 					</iframe>
 					<input type="hidden" id="CONTENTS" name="CONTENTS" />
                  </div>
@@ -61,11 +61,18 @@
 					     </button>
                 	 </div>
                 	 <div id ="fileDiv">
-		                 <div class="form-group" style="display:flex;">
-		                 	<i class="fa fa-chevron-right" style="padding-top: 7px;margin-right: 6px;"></i>
-						    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file_0">
-						    <a href="javascript:void(0);" class="ti-trash" onclick="fn_deleteFile($(this))"/></a>
-						 </div>
+                	 	<c:forEach var="row" items="${list }" varStatus="var">
+			                 <div class="form-group" style="display:flex;">
+			                 	<input type="hidden" id="IDX_${var.index}" name="IDX_${var.index }" value="${row.IDX }">
+			                 	<i class="fa fa-chevron-right" style="padding-top: 7px;margin-right: 6px;"></i>
+			                 	<div style="width: 100%">
+				                 	<a href="#this" id="name_${var.index }" name="name_${var.index }">${row.ORIGINAL_FILE_NAME }</a>
+	<%-- 							    <input type="file" class="form-control-file" id="file_${var.index }" name="file_${var.index }"> --%>
+				                 	(${row.FILE_SIZE }kb)
+			                 	</div>
+							    <a href="javascript:void(0);" class="ti-trash" onclick="fn_deleteFile($(this))"/></a>
+							 </div>
+						 </c:forEach>
                 	 </div>
 					 <div style="text-align: center;" class="form-group">
 	                     <button id="edit" class="btn btn-info btn-rounded" onclick="fn_list()" type="button">목록</button>

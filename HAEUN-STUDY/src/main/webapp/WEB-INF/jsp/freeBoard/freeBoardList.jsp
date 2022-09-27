@@ -75,7 +75,8 @@
 	    $('#freeTable').DataTable({
 	    	"lengthChange": false,
 	    	"searching": false,
-	    	"pageLength": 20
+	    	"pageLength": 20,
+	    	"order": [[0,'desc']]
 	    });
 
 	    $("#writeForm").on("click", function(e){
@@ -84,13 +85,13 @@
 	});
 
 	function fn_openBoardWrite(){
-		$('#frm')[0].action = "<c:url value='/board/openFreeBoardWrite.do' />";
+		$('#frm')[0].action = "<c:url value='/freeBoard/openFreeBoardWrite.do' />";
 		$('#frm')[0].submit();
 	}
 
 	function fn_openBoardDetail(idx){
 		$('#IDX').val(idx);
-		$('#frm')[0].action = "<c:url value='/board/openFreeBoardDetail.do' />";
+		$('#frm')[0].action = "<c:url value='/freeBoard/openFreeBoardDetail.do' />";
 		$('#frm')[0].submit();
 	}
 

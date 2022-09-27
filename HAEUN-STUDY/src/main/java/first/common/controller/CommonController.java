@@ -42,4 +42,9 @@ public class CommonController {
 		response.getOutputStream().flush();
 		response.getOutputStream().close();
 	}
+
+	@RequestMapping(value="/common/editorForm.do")
+	public String editorForm(CommandMap commandMap, HttpServletResponse response, HttpServletRequest request) throws Exception{
+		return "include/editor.include";
+	}
 }

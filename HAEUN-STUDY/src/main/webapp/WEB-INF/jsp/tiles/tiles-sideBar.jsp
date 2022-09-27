@@ -10,7 +10,7 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="javascript:void(0);" onclick="moveMenu('/freeBoard/freeBordList.do')">자유게시판</a></li>
-                    <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                    <li><a href="javascript:void(0);" onclick="moveMenu('/user/userRegForm.do')">회원가입</a></li>
                 </ul>
             </li>
         </ul>

@@ -23,13 +23,35 @@ import first.sample.service.SampleService;
 public class MainController {
 	Logger logger  = LogManager.getLogger(this.getClass());
 
+	@Resource(name = "freeBoardService")
+	public FreeBoardService freeBoardService;
 
 	@RequestMapping(value="/main.do")
 	public String openMain(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
 		return "/main/main";
+
 	}
 
+	@RequestMapping(value="/editor.do")
+	public String openEditor(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		return "/include/editor";
+	}
 
+	@RequestMapping(value="/editorUpdate.do")
+	public String openEditorUpdate(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		Map<String,Object> map = freeBoardService.selectBoardDetail(commandMap.getMap());
+		model.addAttribute("map",map.get("map"));
+
+		return "/include/editor";
+	}
+
+	@RequestMapping(value="/editorView.do")
+	public String openEditorView(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		Map<String,Object> map = freeBoardService.selectBoardDetail(commandMap.getMap());
+		model.addAttribute("map",map.get("map"));
+
+		return "/include/editorView";
+	}
 
 
 }

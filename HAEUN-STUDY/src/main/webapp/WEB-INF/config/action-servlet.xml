@@ -39,8 +39,6 @@
             	<value>classpath:/config/tiles/tiles-config.xml</value>
             </list>
         </property>
-        <!-- prepare 사용 설정 -->
-        <property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory" />
     </bean>
 
     <aop:aspectj-autoproxy/>

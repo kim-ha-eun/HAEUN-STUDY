@@ -34,12 +34,42 @@ public class FreeBoardController {
 		return "/freeBoard/freeBoardList";
 	}
 
-	@RequestMapping(value="/board/openFreeBoardWrite.do")
+	@RequestMapping(value="/freeBoard/openFreeBoardWrite.do")
 	public String openFreeBoardWrite(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
 
 		return "/freeBoard/freeBoardWrite";
 	}
 
+	@RequestMapping(value="/freeBoard/insertBoard.do")
+	public String insertBoard(MultipartHttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		freeBoardService.insertBoard(commandMap.getMap(), req);
 
+		return "redirect:/freeBoard/freeBordList.do";
+	}
+
+	@RequestMapping(value="/freeBoard/openFreeBoardDetail.do")
+	public String openBoardDetail(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		Map<String,Object> map = freeBoardService.selectBoardDetail(commandMap.getMap());
+		model.addAttribute("map",map.get("map"));
+		model.addAttribute("list", map.get("list"));
+
+		return "/freeBoard/freeBoardDetail";
+	}
+
+	@RequestMapping(value="/freeBoard/deleteBoard.do")
+	public String deleteBoard(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		freeBoardService.deleteBoard(commandMap.getMap());
+
+		return "redirect:/freeBoard/freeBordList.do";
+	}
+
+	@RequestMapping(value="/freeBoard/openBoardUpdate.do")
+	public String openBoardUpdate(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		Map<String,Object> map = freeBoardService.selectBoardDetail(commandMap.getMap());
+		model.addAttribute("map",map.get("map"));
+		model.addAttribute("list", map.get("list"));
+
+		return "/freeBoard/freeBoardUpdate";
+	}
 
 }
