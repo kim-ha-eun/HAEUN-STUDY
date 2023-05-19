@@ -72,4 +72,11 @@ public class FreeBoardController {
 		return "/freeBoard/freeBoardUpdate";
 	}
 
+	@RequestMapping(value="/freeBoard/updateBoard.do")
+	public String updateBoard(MultipartHttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		freeBoardService.updateBoard(commandMap.getMap(), req);
+
+		return "redirect:/freeBoard/freeBordList.do";
+	}
+
 }

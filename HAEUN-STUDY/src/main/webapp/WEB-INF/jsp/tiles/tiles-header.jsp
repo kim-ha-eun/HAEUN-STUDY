@@ -8,7 +8,7 @@
             <b class="logo-abbr"><img src="<c:url value='/images/logo.png'/>" alt=""> </b>
             <span class="logo-compact"><img src="<c:url value='/images/logo-compact.png'/>" alt=""></span>
             <span class="brand-title">
-                <img src="<c:url value='/images/logo-text.png'/>" alt="">
+                <img src="<c:url value='/images/titlelogo-text.png'/>" alt="">
             </span>
         </a>
     </div>

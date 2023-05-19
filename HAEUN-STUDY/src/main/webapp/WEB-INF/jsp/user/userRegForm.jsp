@@ -1,146 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/include-taglib.jspf" %>
 
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
-                    </ol>
-                </div>
-            </div>
-            <!-- row -->
+<h4 style="text-align: center;"><img src="<c:url value='/images/titlelogo-color.png'/>" alt=""></h4>
+<form class="mt-5 mb-5 login-input" id="frm" name="frm">
+    <div class="form-group">
+        <input type="text" class="form-control" id="val-name" name="val-name" placeholder="이름" >
+    </div>
+    <div class="form-group">
+        <input type="email" class="form-control" id="val-email" name="val-email" placeholder="이메일" >
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" id="val-password" name="val-password" placeholder="비밀번호" >
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="비밀번호 확인" >
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="val-phone" name="val-phone" placeholder="번호" >
+    </div>
+    <button type="submit" class="btn login-form__btn submit w-100">회원가입</button>
+</form>
+<p class="mt-5 login-form__footer"><a onclick="fn_loginForm()" class="text-primary">로그인</a></p>
+<script>
+$(function() {
 
-            <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="form-validation">
-                                    <form class="form-valide" action="#" method="post">
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-TITLE">Username <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="TITLE" name="TITLE" placeholder="Enter a username..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Your valid email..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Choose a safe one..">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="..and confirm it!">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Suggestions <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <textarea class="form-control" id="val-suggestions" name="val-suggestions" rows="5" placeholder="What would you like to see?"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-skill">Best Skill <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <select class="form-control" id="val-skill" name="val-skill">
-                                                    <option value="">Please select</option>
-                                                    <option value="html">HTML</option>
-                                                    <option value="css">CSS</option>
-                                                    <option value="javascript">JavaScript</option>
-                                                    <option value="angular">Angular</option>
-                                                    <option value="angular">React</option>
-                                                    <option value="vuejs">Vue.js</option>
-                                                    <option value="ruby">Ruby</option>
-                                                    <option value="php">PHP</option>
-                                                    <option value="asp">ASP.NET</option>
-                                                    <option value="python">Python</option>
-                                                    <option value="mysql">MySQL</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-currency">Currency <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-currency" name="val-currency" placeholder="$21.60">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-website">Website <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-website" name="val-website" placeholder="http://example.com">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-phoneus">Phone (US) <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-phoneus" name="val-phoneus" placeholder="212-999-0000">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-digits">Digits <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-digits" name="val-digits" placeholder="5">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-number">Number <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-number" name="val-number" placeholder="5.0">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-range">Range [1, 5] <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="val-range" name="val-range" placeholder="4">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label"><a href="#">Terms &amp; Conditions</a>  <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-8">
-                                                <label class="css-control css-control-primary css-checkbox" for="val-terms">
-                                                    <input type="checkbox" class="css-control-input" id="val-terms" name="val-terms" value="1"> <span class="css-control-indicator"></span> I agree to the terms</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-lg-8 ml-auto">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #/ container -->
+	jQuery(".login-input").validate({
+		ignore:[],errorClass:"invalid-feedback animated fadeInDown",
+		errorElement:"div",
+		errorPlacement:function(e,a){jQuery(a).parents(".form-group").append(e)},
+		highlight:function(e){jQuery(e).closest(".form-group").removeClass("is-invalid").addClass("is-invalid")},
+		success:function(e){jQuery(e).closest(".form-group").removeClass("is-invalid"),jQuery(e).remove();},
+		rules:{"val-name":{required:!0,minlength:2},
+			   "val-email":{required:!0,email:!0},
+			   "val-password":{required:!0,minlength:5},
+			   "val-confirm-password":{required:!0,equalTo:"#val-password"},
+			   "val-phone":{required:!0}
 
-    <!--**********************************
-        Scripts
-    ***********************************-->
+		},
+		messages:{"val-name":{required:"이름을 입력하세요",minlength:"2글자 이상 입력하세요"},
+			      "val-email":"유효한 이메일을 입력하세요",
+			      "val-password":{required:"비밀번호를 입력하세요",minlength:"5글자 이상 입력하세요"},
+			      "val-confirm-password":{required:"비밀번호 확인을 입력하세요",minlength:"5글자 이상 입력하세요",equalTo:"비밀번호와 같지 않습니다"},
+			      "val-phone":"핸드폰 번호를 입력하세요"
+		},
+		submitHandler:function(form) {
+			fn_save();
+		}
+	});
 
-</body>
+})
 
-</html>
+function fn_loginForm(){
+	location.href = "<c:url value='/user/loginForm.do' />"
+}
+
+function fn_save(){
+	$('#frm')[0].action = "<c:url value='/user/insertUserInfo.do' />";
+	$('#frm')[0].submit();
+}
+
+</script>

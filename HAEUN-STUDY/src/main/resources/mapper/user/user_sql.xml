@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+	<insert id="insertUserInfo" parameterType="hashmap">
+		/*user.insertUserInfo*/
+		<selectKey keyProperty="user_idx" resultType="string" order="BEFORE">
+			SELECT SEQ_USER_IDX.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			INSERT INTO USER_INFO (
+				USER_IDX,
+				USER_EMAIL,
+				USER_NAME,
+				USER_PASSWORD,
+				USER_PHONE
+			) VALUES (
+				#{user_idx},
+				#{val-email},
+				#{val-name},
+				#{val-password},
+				#{val-phone}
+			)
+		]]>
+	</insert>
+
+</mapper>
+
