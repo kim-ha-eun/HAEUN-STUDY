@@ -13,16 +13,28 @@
 				USER_EMAIL,
 				USER_NAME,
 				USER_PASSWORD,
-				USER_PHONE
+				USER_PHONE,
+				USER_PASSWORD_SALT
 			) VALUES (
 				#{user_idx},
 				#{val-email},
 				#{val-name},
 				#{val-password},
-				#{val-phone}
+				#{val-phone},
+				#{val-passwordSalt}
 			)
 		]]>
 	</insert>
+
+	<select id="selectUserInfo" parameterType="hashmap" resultType="hashmap">
+		SELECT USER_NAME,
+			   USER_EMAIL,
+			   USER_PHONE,
+			   USER_PASSWORD,
+			   USER_PASSWORD_SALT
+		FROM USER_INFO
+		WHERE USER_EMAIL = #{email}
+	</select>
 
 </mapper>
 

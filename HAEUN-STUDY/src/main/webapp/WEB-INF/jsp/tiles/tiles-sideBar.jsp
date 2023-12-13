@@ -11,6 +11,8 @@
                 <ul aria-expanded="false">
                     <li><a href="javascript:void(0);" onclick="moveMenu('/freeBoard/freeBordList.do')">자유게시판</a></li>
                     <li><a href="javascript:void(0);" onclick="moveMenu('/user/userRegForm.do')">회원가입</a></li>
+                    <li><a href="javascript:void(0);" onclick="moveMenu('/calender/calenderForm.do')">달력</a></li>
+                     <li><a href="javascript:void(0);" onclick="moveMenu('/chatting/chattingForm.do')">채팅방</a></li>
                 </ul>
             </li>
         </ul>

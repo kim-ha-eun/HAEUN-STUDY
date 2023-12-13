@@ -6,6 +6,10 @@
 <script src="<c:url value='/js/gleek.js'/>"></script>
 <script src="<c:url value='/js/styleSwitcher.js'/>"></script>
 
+<%-- <script src="<c:url value='/plugins/nouislider/nouislider.min.js'/>"></script> --%>
+<%-- <script src="<c:url value='/plugins/wnumb/wNumb.js'/>"></script> --%>
+<%-- <script src="<c:url value='/js/plugins-init/nouislider-init.js'/>"></script> --%>
+
 <!-- <!-- Chartjs -->
 <%-- <script src="<c:url value='/plugins/chart.js/Chart.bundle.min.js'/>"></script> --%>
 <!-- <!-- Circle progress -->
@@ -30,6 +34,10 @@
 <script src="<c:url value='/plugins/tables/js/datatable/dataTables.bootstrap4.min.js'/>"></script>
 <script src="<c:url value='/plugins/tables/js/datatable-init/datatable-basic.min.js'/>"></script>
 
+<script src="<c:url value='/plugins/jqueryui/js/jquery-ui.min.js'/>"></script>
+<script src="<c:url value='/plugins/moment/moment.min.js'/>"></script>
+<%-- <script src="<c:url value='/plugins/fullcalendar/js/fullcalendar.min.js'/>"></script> --%>
+<%-- <script src="<c:url value='/js/plugins-init/fullcalendar-init.js'/>"></script> --%>
 
 <script src="<c:url value='/plugins/validation/jquery.validate.min.js'/>"></script>
 <%-- <script src="<c:url value='/plugins/validation/jquery.validate-init.js'/>"></script> --%>

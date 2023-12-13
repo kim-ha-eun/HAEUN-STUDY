@@ -28,7 +28,7 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping(value="/user/userRegForm.do")
-	public String openMain(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+	public String userRegForm(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
 		return "/user/userRegForm.lgn";
 	}
 
@@ -38,11 +38,20 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/user/insertUserInfo.do")
-	public String login(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+	public String insertUserInfo(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
 		userService.insertUserInfo(commandMap.getMap());
 
 		return "/user/loginForm.lgn";
 	}
+
+	@RequestMapping(value="/user/login.do")
+	public String login(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		int result = userService.selectUserInfo(commandMap.getMap(),req);
+		model.addAttribute("result",result);
+
+		return "jsonView";
+	}
+
 
 
 

@@ -18,7 +18,7 @@
 	</c:if>
 </div>
 
-<script src="/js/editor.js"></script>
+<script src="<c:url value='/js/editor.js'/>"></script>
 <script>
 function editorData() {
 	const editorData = editor.getData();

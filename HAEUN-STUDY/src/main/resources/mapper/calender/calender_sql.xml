@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="calender">
+
+	<select id="selectCalenderCategory" parameterType="hashmap" resultType="hashmap">
+		/*calender.selectCalenderCategory*/
+		<![CDATA[
+			SELECT  CATEGORY_NAME,
+			        CATEGORY_COLOR,
+			        CATEGORY_INDEX,
+			        REGIST_ID
+			FROM CALENDER_CATEGORY
+			ORDER BY CATEGORY_INDEX
+		]]>
+	</select>
+
+    <select id="insertCategory" parameterType="hashmap" resultType="hashmap">
+		/*calender.insertCategory*/
+		<![CDATA[
+			 INSERT INTO CALENDER_CATEGORY (
+			 	CATEGORY_NAME,
+			 	CATEGORY_COLOR,
+			 	CATEGORY_INDEX,
+			 	REGIST_ID,
+			 	REGIST_DATE
+			 ) VALUES(
+			  #{cateName},
+			  #{cateColor},
+			   SEQ_CATEGORY_INDEX.NEXTVAL,
+			  #{registId},
+			   SYSDATE
+			 )
+		]]>
+	</select>
+
+</mapper>
+

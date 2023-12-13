@@ -27,6 +27,81 @@ function submitPost(formId, url) {
 	}).submit();
 }
 
+/**
+ * check empty variable
+ */
+var isEmpty = function(value) {
+	if( value == "" || value == null || value == undefined || (value != null && typeof value == "object" && !Object.keys(value).length)) {
+		return true;
+	} else {
+		return false;
+	}
+};
+
+/**
+ * Ajax Transmission
+ */
+var AjaxAP = (function() {
+	return {
+		send : function(url, param, dType, callbackFun, async) {
+			var synchronized = ((typeof async == undefined) || (async != true && async != false)) ? true : async;
+			$.ajax({
+				url      : url,
+				data     : param,
+				type     : "POST",
+				datatype : dType,
+				async    : synchronized,
+				success  : function(rcvData) {
+					if (isEmpty(rcvData) || (typeof rcvData === 'string' && rcvData.startsWith("<!DOCTYPE"))) {
+						return false;
+					} else if(typeof(callbackFun) == 'function'){
+						return callbackFun(rcvData);
+					} else {
+						var execFunc = new Function("return " + callbackFun + "(" + rcvData + ")");
+					 	execFunc();
+					}
+				}, error : function(rcvData) {
+					var execFunc = new Function("return " + callbackFun);
+				 	execFunc();
+				}
+			});
+		}
+	};
+}());
+
+//객체를 파라미터로 넘긴다 - form serializeObject() 한 객체
+//컨트롤러의 받는 파라미터에 @RequestBody 를 붙여준다.
+var AjaxAPJSON = (function() {
+	return {
+		send : function(url, param, dType, callbackFun, async) {
+			var synchronized = ((typeof async == undefined) || (async != true && async != false)) ? true : async;
+			$.ajax({
+				url      : url,
+				data     : JSON.stringify(param),
+				type     : "POST",
+				datatype : dType,
+				contentType : "application/json; charset=utf-8",
+				async    : synchronized,
+				success  : function(rcvData) {
+
+					if (isEmpty(rcvData) || (typeof rcvData === 'string' && rcvData.startsWith("<!DOCTYPE"))) {
+						return false;
+					} else if(typeof(callbackFun) == 'function'){
+						return callbackFun(rcvData);
+					} else {
+						var execFunc = new Function("return " + callbackFun + "(" + rcvData + ")");
+					 	execFunc();
+					}
+				}, error : function(rcvData) {
+					var execFunc = new Function("return " + callbackFun);
+				 	execFunc();
+				}
+			});
+		}
+	};
+}());
+
+
 //function ComSubmit(opt_formId) {
 //	this.formId = gfn_isNull(opt_formId) == true ? "commonForm" : opt_formId;
 //	this.url = "";

@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/include/include-taglib.jspf" %>
 
 <h4 style="text-align: center;"><img src="<c:url value='/images/titlelogo-color.png'/>" alt=""></h4>
-<form class="mt-5 mb-5 login-input" id="frm" name="frm">
+<form class="mt-5 mb-5 login-input" id="frm" name="frm" method="post">
     <div class="form-group">
         <input type="text" class="form-control" id="val-name" name="val-name" placeholder="이름" >
     </div>
@@ -51,7 +51,8 @@ $(function() {
 })
 
 function fn_loginForm(){
-	location.href = "<c:url value='/user/loginForm.do' />"
+	$('#frm')[0].action =  "<c:url value='/user/loginForm.do' />";
+	$('#frm')[0].submit();
 }
 
 function fn_save(){

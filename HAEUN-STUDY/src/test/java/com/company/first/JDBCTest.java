@@ -9,9 +9,9 @@ import org.junit.Test;
 public class JDBCTest {
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	private static final String URL = "jdbc:oracle:thin:@haeundb_high?TNS_ADMIN=C://Users//miso//Downloads//Wallet_haeundb";
-	private static final String USER = "admin";
+	private static final String USER = "ADMIN";
 
-	private static final String PWD = "Bean667485??";
+	private static final String PWD = "Bean667485oracle";
 
 
 	@Test
