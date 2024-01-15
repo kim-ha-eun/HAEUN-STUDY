@@ -19,14 +19,64 @@ public class ChattingServiceImpl implements ChattingrService{
 	@Resource(name="chattingDAO")
 	public ChattingDAO chattingDAO;
 
-//	@Override
-//	public List<Map<String, Object>> selectCalenderCategory(Map<String, Object> map) throws Exception {
-//		return calenderDAO.selectCalenderCategory(map);
-//	}
-//
-//	@Override
-//	public void insertCategory(Map<String, Object> map)  throws Exception{
-//		calenderDAO.insertCategory(map);
-//	}
+	@Override
+	public Map<String, Object> insertTodoList(Map<String, Object> map) throws Exception {
+		chattingDAO.insertTodoList(map);
+
+		return map;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectTodoList(Map<String, Object> map) throws Exception {
+		return chattingDAO.selectTodoList(map);
+	}
+
+	@Override
+	public void updateComplete(Map<String, Object> map) {
+		chattingDAO.updateComplete(map);
+	}
+
+	@Override
+	public void deleteTodoList(Map<String, Object> map) {
+		chattingDAO.deleteTodoList(map);
+	}
+
+	@Override
+	public void insertMemo(Map<String, Object> map) {
+		chattingDAO.insertMemo(map);
+	}
+
+	@Override
+	public Map<String, Object> selectMemo(Map<String, Object> map) {
+		return chattingDAO.selectMemo(map);
+	}
+
+	@Override
+	public Map<String, Object> insertChattingUserList(Map<String, Object> map) {
+		chattingDAO.insertChattingUserList(map);
+
+		return map;
+	}
+
+	@Override
+	public void updateChattingUserList(Map<String, Object> map) {
+		chattingDAO.updateChattingUserList(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectUserList(Map<String, Object> map) {
+		return chattingDAO.selectUserList(map);
+	}
+
+	@Override
+	public void insertChattingMessage(Map<String, Object> userMap) {
+		chattingDAO.insertChattingMessage(userMap);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectMsgList(Map<String, Object> map) {
+		return chattingDAO.selectMsgList(map);
+	}
+
 
 }

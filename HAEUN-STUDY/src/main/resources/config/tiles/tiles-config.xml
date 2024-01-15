@@ -26,6 +26,9 @@
 	<definition name="/include/editorView" extends="include-layout">
 		<put-attribute name="baseEmptyContent" value="/WEB-INF/jsp/include/editorView.jsp" />
 	</definition>
+	<definition name="/include/editorForChatting" extends="include-layout">
+		<put-attribute name="baseEmptyContent" value="/WEB-INF/jsp/include/editorForChatting.jsp" />
+	</definition>
 
 	<!-- include template -->
 	<definition name="include-layout" template="/WEB-INF/jsp/tiles/includeLayout.jsp">

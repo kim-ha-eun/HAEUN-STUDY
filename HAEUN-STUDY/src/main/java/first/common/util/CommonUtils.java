@@ -37,6 +37,10 @@ public class CommonUtils {
         else return obj == null;
     }
 
+    public static Boolean isNotEmpty(Object obj) {
+        return !isEmpty(obj);
+    }
+
 	public static String encryptSHA512(String data, String salt) throws Exception {
 		String result = "";
 		if(isEmpty(salt)) salt = "";

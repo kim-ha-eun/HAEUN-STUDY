@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import first.common.common.CommandMap;
+import first.hnBlog.chatting.service.ChattingrService;
 import first.hnBlog.feeBoard.service.FreeBoardService;
 import first.sample.service.SampleService;
 
@@ -25,6 +26,9 @@ public class MainController {
 
 	@Resource(name = "freeBoardService")
 	public FreeBoardService freeBoardService;
+
+	@Resource(name = "chattingService")
+	public ChattingrService chattingService;
 
 	@RequestMapping(value="/main.do")
 	public String openMain(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
@@ -51,6 +55,13 @@ public class MainController {
 		model.addAttribute("map",map.get("map"));
 
 		return "/include/editorView";
+	}
+
+	@RequestMapping(value="/editorForChatting.do")
+	public String openEditorForChatting(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		Map<String, Object> map = chattingService.selectMemo(commandMap.getMap());
+		model.addAttribute("map",map);
+		return "/include/editorForChatting";
 	}
 
 

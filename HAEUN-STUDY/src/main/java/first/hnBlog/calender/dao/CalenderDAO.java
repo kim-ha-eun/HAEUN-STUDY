@@ -19,4 +19,29 @@ public class CalenderDAO extends AbstractDAO{
 		insert("calender.insertCategory", map);
 	}
 
+	public void insertCalenderEvent(Map<String, Object> map) {
+		insert("calender.insertCalenderEvent", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectEventList(Map<String, Object> map) {
+		return (List<Map<String, Object>>)selectList("calender.selectEventList",map);
+	}
+
+	public void updateCalenderEvent(Map<String, Object> map) {
+		update("calender.updateCalenderEvent",map);
+	}
+
+	public void deleteCalenderEvent(Map<String, Object> map) {
+		update("calender.deleteCalenderEvent",map);
+	}
+
+	public void updateCategory(Map<String, Object> map) {
+		update("calender.updateCategory",map);
+	}
+
+	public void deleteCategory(Map<String, Object> map) {
+		delete("calender.deleteCategory",map);
+	}
+
 }

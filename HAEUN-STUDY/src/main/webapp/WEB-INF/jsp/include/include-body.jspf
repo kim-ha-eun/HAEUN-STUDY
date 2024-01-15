@@ -29,6 +29,9 @@
 <%-- <script src="<c:url value='/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js'/>"></script> --%>
 
 <%-- <script src="<c:url value='/js/dashboard/dashboard-1.js'/>"></script> --%>
+<%-- <script src="<c:url value='/plugins/fullcalendar/js/fullcalendar.min.js'/>"></script> --%>
+<%-- <script src="<c:url value='/js/plugins-init/fullcalendar-init.js'/>"></script> --%>
+<%-- <script src="<c:url value='/plugins/validation/jquery.validate-init.js'/>"></script> --%>
 
 <script src="<c:url value='/plugins/tables/js/jquery.dataTables.min.js'/>"></script>
 <script src="<c:url value='/plugins/tables/js/datatable/dataTables.bootstrap4.min.js'/>"></script>
@@ -36,8 +39,5 @@
 
 <script src="<c:url value='/plugins/jqueryui/js/jquery-ui.min.js'/>"></script>
 <script src="<c:url value='/plugins/moment/moment.min.js'/>"></script>
-<%-- <script src="<c:url value='/plugins/fullcalendar/js/fullcalendar.min.js'/>"></script> --%>
-<%-- <script src="<c:url value='/js/plugins-init/fullcalendar-init.js'/>"></script> --%>
 
 <script src="<c:url value='/plugins/validation/jquery.validate.min.js'/>"></script>
-<%-- <script src="<c:url value='/plugins/validation/jquery.validate-init.js'/>"></script> --%>

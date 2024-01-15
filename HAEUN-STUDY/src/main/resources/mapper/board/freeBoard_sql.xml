@@ -35,7 +35,7 @@
 				#{CONTENTS},
 				0,
 				'N',
-				SYSDATE,
+				CURRENT_DATE,
 				'Admin'
 			)
 		]]>

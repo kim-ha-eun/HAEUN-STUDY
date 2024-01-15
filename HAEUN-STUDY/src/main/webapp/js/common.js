@@ -52,11 +52,11 @@ var AjaxAP = (function() {
 				datatype : dType,
 				async    : synchronized,
 				success  : function(rcvData) {
-					if (isEmpty(rcvData) || (typeof rcvData === 'string' && rcvData.startsWith("<!DOCTYPE"))) {
-						return false;
-					} else if(typeof(callbackFun) == 'function'){
+					if(typeof(callbackFun) == 'function'){
 						return callbackFun(rcvData);
-					} else {
+					}else if (isEmpty(rcvData) || (typeof rcvData === 'string' && rcvData.startsWith("<!DOCTYPE"))) {
+						return false;
+					}else {
 						var execFunc = new Function("return " + callbackFun + "(" + rcvData + ")");
 					 	execFunc();
 					}

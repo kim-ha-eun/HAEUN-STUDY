@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chatting">
+
+	<select id="selectTodoList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT  TODO_CN,
+			        TODO_IDX,
+			        COMPLETE_YN
+			FROM TODO_LIST
+			WHERE DELETE_YN = 'N'
+			ORDER BY REGIST_DATE
+		]]>
+	</select>
+
+    <insert id="insertTodoList" parameterType="hashmap" >
+    	<selectKey keyProperty="todoIdx" resultType="string" order="BEFORE">
+			SELECT SEQ_TODO_LIST_IDX.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			 INSERT INTO TODO_LIST (
+			 	TODO_CN,
+			 	TODO_IDX,
+			 	COMPLETE_YN,
+			 	DELETE_YN,
+			 	REGIST_ID,
+			 	REGIST_DATE
+			 ) VALUES(
+			   #{cn},
+			   #{todoIdx},
+			   'N',
+			   'N',
+			   #{registId},
+			   CURRENT_DATE
+			 )
+		]]>
+	</insert>
+
+	<update id="updateComplete" parameterType="hashmap">
+		<![CDATA[
+			UPDATE TODO_LIST
+			SET
+				COMPLETE_YN = #{complete}
+			WHERE
+				TODO_IDX = #{idx}
+		]]>
+	</update>
+
+	<update id="deleteTodoList" parameterType="hashmap">
+		<![CDATA[
+			UPDATE TODO_LIST
+			SET
+				DELETE_YN = 'Y'
+			WHERE
+				TODO_IDX = #{idx}
+		]]>
+	</update>
+
+	<insert id="insertMemo" parameterType="hashmap" >
+    	<selectKey keyProperty="memoIdx" resultType="string" order="BEFORE">
+			SELECT SEQ_MEMO_IDX.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			 INSERT INTO MEMO (
+			 	MEMO_IDX,
+			 	MEMO_CN,
+			 	UPDATE_ID,
+			 	UPDATE_DATE
+			 ) VALUES(
+			   #{memoIdx},
+			   #{cn},
+			   #{registId},
+			   CURRENT_DATE
+			 )
+		]]>
+	</insert>
+
+	<select id="selectMemo" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM (
+	 			SELECT
+	 					MEMO_IDX,
+				        MEMO_CN
+				FROM MEMO
+				ORDER BY UPDATE_DATE DESC
+			) WHERE ROWNUM <=1
+		]]>
+	</select>
+
+	<insert id="insertChattingUserList" parameterType="hashmap" >
+    	<selectKey keyProperty="chattingUserIdx" resultType="string" order="BEFORE">
+			SELECT SEQ_CHATTING_USER_IDX.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			 INSERT INTO CHATTING_USER_LIST (
+			 	CHATTING_USER_IDX,
+			 	USER_ID,
+			 	ENTER_DATE,
+			 	USER_NAME,
+			 	ON_YN,
+			 	SESSION_ID
+			 ) VALUES(
+			   #{chattingUserIdx},
+			   #{USER_EMAIL},
+			   CURRENT_DATE,
+			   #{USER_NAME},
+			   'Y',
+			   #{SESSION_ID}
+			 )
+		]]>
+	</insert>
+
+	<update id="updateChattingUserList" parameterType="hashmap">
+		<![CDATA[
+			UPDATE CHATTING_USER_LIST
+			SET
+				ON_YN = 'N',
+				OUT_DATE = CURRENT_DATE
+			WHERE
+				SESSION_ID = #{SESSION_ID}
+			AND ON_YN = 'Y'
+		]]>
+	</update>
+
+	<select id="selectUserList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT  USER_ID,
+			        USER_NAME,
+			        SESSION_ID
+			FROM CHATTING_USER_LIST
+			WHERE ON_YN = 'Y'
+		]]>
+	</select>
+
+	<insert id="insertChattingMessage" parameterType="hashmap" >
+    	<selectKey keyProperty="SEQ_CHATTING_MESSAGE_IDX" resultType="string" order="BEFORE">
+			SELECT SEQ_CHATTING_MESSAGE_IDX.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			 INSERT INTO CHATTING_MESSAGE_LOG (
+			 	MESSAGE_IDX,
+			 	REGIST_ID,
+			 	REGIST_NAME,
+			 	REGIST_DATE,
+			 	MESSAGE
+			 ) VALUES(
+			   #{SEQ_CHATTING_MESSAGE_IDX},
+			   #{USER_EMAIL},
+			   #{USER_NAME},
+			   CURRENT_DATE,
+			   #{MESSAGE}
+			 )
+		]]>
+	</insert>
+
+	<select id="selectMsgList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT  REGIST_ID,
+			        REGIST_NAME,
+			        TO_CHAR(REGIST_DATE, 'AM HH24:MI:SS') AS REGIST_DATE,
+			        MESSAGE
+			FROM CHATTING_MESSAGE_LOG
+			WHERE TO_CHAR(REGIST_DATE, 'MM:DD') =   TO_CHAR(CURRENT_DATE , 'MM:DD')
+			ORDER BY REGIST_DATE
+		]]>
+	</select>
+
+
+</mapper>
+

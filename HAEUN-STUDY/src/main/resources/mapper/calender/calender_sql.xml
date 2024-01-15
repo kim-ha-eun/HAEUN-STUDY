@@ -14,7 +14,7 @@
 		]]>
 	</select>
 
-    <select id="insertCategory" parameterType="hashmap" resultType="hashmap">
+    <insert id="insertCategory" parameterType="hashmap">
 		/*calender.insertCategory*/
 		<![CDATA[
 			 INSERT INTO CALENDER_CATEGORY (
@@ -28,10 +28,101 @@
 			  #{cateColor},
 			   SEQ_CATEGORY_INDEX.NEXTVAL,
 			  #{registId},
-			   SYSDATE
+			   CURRENT_DATE
 			 )
 		]]>
+	</insert>
+
+	<insert id="insertCalenderEvent" parameterType="hashmap">
+	    <selectKey keyProperty="calenderIdx" resultType="string" order="BEFORE">
+			SELECT SEQ_CALENDER_IDX.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			 INSERT INTO CALENDER_EVENT (
+			 	TITLE,
+			 	START_DATE,
+			 	END_DATE,
+			 	REGIST_ID,
+			 	REGIST_DATE,
+			 	CLASS_NAME,
+			 	GROUP_ID,
+			 	URL,
+			 	CALENDER_IDX,
+			 	DELETE_YN
+			 ) VALUES(
+			  #{title},
+			  #{start},
+			  #{end},
+			  #{registId},
+			  CURRENT_DATE,
+			  #{className},
+			  #{groupId},
+			  #{url},
+			  #{calenderIdx},
+			  'N'
+			 )
+		]]>
+	</insert>
+
+	<select id="selectEventList" parameterType="hashmap" resultType="hashmap">
+		/*calender.selectEventList*/
+		<![CDATA[
+			SELECT  TITLE,
+				 	TO_CHAR(START_DATE, 'YYYY-MM-DD') AS START_DATE ,
+				 	END_DATE,
+				 	REGIST_ID,
+				 	REGIST_DATE,
+				 	CLASS_NAME,
+				 	GROUP_ID,
+				 	URL,
+				 	CALENDER_IDX,
+				 	DELETE_YN
+			FROM CALENDER_EVENT
+			WHERE DELETE_YN = 'N'
+			ORDER BY CALENDER_IDX
+		]]>
 	</select>
+
+	<update id="updateCalenderEvent" parameterType="hashmap">
+		<![CDATA[
+			UPDATE CALENDER_EVENT
+			SET
+				TITLE = #{title}
+			WHERE
+				CALENDER_IDX = #{idx}
+		]]>
+	</update>
+
+	<update id="deleteCalenderEvent" parameterType="hashmap">
+		<![CDATA[
+			UPDATE CALENDER_EVENT
+			SET
+				DELETE_YN = 'Y'
+			WHERE
+				CALENDER_IDX = #{idx}
+		]]>
+	</update>
+
+	<update id="updateCategory" parameterType="hashmap">
+		<![CDATA[
+			UPDATE CALENDER_CATEGORY
+			SET
+				CATEGORY_NAME = #{cateName},
+			 	CATEGORY_COLOR = #{cateColor}
+			WHERE
+				CATEGORY_INDEX = #{index}
+		]]>
+	</update>
+
+	<delete id="deleteCategory" parameterType="hashmap">
+		<![CDATA[
+			DELETE
+			FROM CALENDER_CATEGORY
+			WHERE
+				CATEGORY_INDEX = #{index}
+		]]>
+	</delete>
+
 
 </mapper>
 
