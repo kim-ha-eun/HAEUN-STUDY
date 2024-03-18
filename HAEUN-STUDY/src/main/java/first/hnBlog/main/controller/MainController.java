@@ -64,5 +64,12 @@ public class MainController {
 		return "/include/editorForChatting";
 	}
 
+	@RequestMapping(value="/profile.do")
+	public String profile(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+		return "/main/profile";
+
+	}
+
+
 
 }

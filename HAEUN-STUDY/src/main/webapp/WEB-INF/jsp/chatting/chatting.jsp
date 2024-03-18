@@ -23,6 +23,19 @@
 .fc-event {
     cursor: pointer !important;
 }
+.media-reply .media-body {
+    padding: 10px !important;
+    display: flex;
+    flex-direction: column;
+}
+.msgDiv{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+/* .myMessage{ */
+/*  	align-items: flex-end; */
+/* } */
 </style>
  <div class="row page-titles mx-0">
      <div class="col p-md-0">
@@ -35,29 +48,29 @@
 
  <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-6 col-xl-7">
+                    <div class="col-lg-6 col-xl-6">
                         <div id="msgAreaDiv" class="card" style="height:500px; overflow:auto;">
-                            <div class="card-body" id="msgArea">
+                            <div class="card-body msgDiv" id="msgArea">
                                 <c:forEach items="${msgList }" var="msgList">
                                 	<c:if test="${msgList.REGIST_NAME eq userName }">
-	                                	<div class="media media-reply">
-	                                		<div class="media-body" style="text-align: right;    background: #7571f92b;color: black;">
+	                                	<div class="media media-reply" style="align-self: flex-end;">
+	                                		<div class="media-body myMessage" style="background: #7571f92b;color: black;">
 	                                			<div class="d-sm-flex justify-content-between mb-2" style="flex-direction: row-reverse;">
 	                                				<h5 class="mb-sm-0">${msgList.REGIST_NAME }<small class="text-muted ml-3">${msgList.REGIST_DATE }</small></h5>
 	                                			</div>
-	                                			<p>${msgList.MESSAGE }</p>
+	                                			<div>${msgList.MESSAGE }</div>
 	                                		</div>
 	                                		<img class="ml-3 circle-rounded" src="images/avatar/2.jpg" width="50" height="50" alt="Generic placeholder image">
 	                                	</div>
                                 	</c:if>
                                 	<c:if test="${msgList.REGIST_NAME ne userName }">
 	                                	<div class="media media-reply">
-	                                		<img class="ml-3 circle-rounded" src="images/avatar/2.jpg" width="50" height="50" alt="Generic placeholder image">
+	                                		<img class="mr-3 circle-rounded" src="images/avatar/2.jpg" width="50" height="50" alt="Generic placeholder image">
 	                                		<div class="media-body">
 	                                			<div class="d-sm-flex justify-content-between mb-2">
 	                                				<h5 class="mb-sm-0">${msgList.REGIST_NAME }<small class="text-muted ml-3">${msgList.REGIST_DATE }</small></h5>
 	                                			</div>
-	                                			<p>${msgList.MESSAGE }</p>
+	                                			<div><c:out value="${msgList.MESSAGE }" /></div>
 	                                		</div>
 	                                	</div>
                                 	</c:if>
@@ -69,7 +82,8 @@
                             <div class="card-body">
                                 <form id="frm" naem="frm" method="post" class="form-profile">
                                     <div class="form-group">
-										<input type ="text" class="form-control" id="msg" />
+<!-- 										<input type ="text" class="form-control" id="msg" /> -->
+										<textarea style="resize: vertical;" id="msg" class="form-control"></textarea>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <ul class="mb-0 form-profile__icons">
@@ -90,7 +104,7 @@
 
                     </div>
 
-                      <div class="col-lg-6 col-xl-5">
+                      <div class="col-lg-6 col-xl-6">
                         <div class="card">
                             <div class="card-body">
                                 <div id="accordion-two" class="accordion">
@@ -101,9 +115,9 @@
                                         <div id="collapseThree4" class="collapse show" data-parent="#accordion-two">
                                             <div class="card-body">
                                                 <ul id="user_list">
-	                                                 <c:forEach items="${userList }" var="userList">
-														<li><input type="checkbox" name="chattingUserIdx" style="display: none;" value="${userList.SESSION_ID }"><i class="fa fa-user" style="float: left;margin-top: 3px;color: blueviolet;"></i><span style="margin-left:10px;">${userList.USER_NAME }</span></li>
-	                                                 </c:forEach>
+<%-- 	                                                 <c:forEach items="${userList }" var="userList"> --%>
+<%-- 														<li><input type="checkbox" name="chattingUserIdx" style="display: none;" value="${userList.SESSION_ID }"><i class="fa fa-user" style="float: left;margin-top: 3px;color: blueviolet;"></i><span style="margin-left:10px;">${userList.USER_NAME }</span></li> --%>
+<%-- 	                                                 </c:forEach> --%>
                                                 </ul>
                                             </div>
                                         </div>
@@ -347,7 +361,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	 calendar.render();
 
 })
+
 $(document).ready(function() {
+	useList();
+
 	$("#msg").keypress(function(e){
 		//검색어 입력 후 엔터키 입력하면 조회버튼 클릭
 		if(e.keyCode && e.keyCode == 13){
@@ -496,12 +513,23 @@ $(document).ready(function() {
 
     });
 
+	$(window).on('beforeunload', function(){
+		websocket.close();
+	});
 
 });
 
 var websocket = new WebSocket("ws://localhost:8083/startChatting/chat.do");
 // var websocket = new WebSocket("ws://129.154.63.250:8080/HAEUN-STUDY/startChatting/chat.do");
 websocket.onmessage = onMessage;
+
+websocket.onclose = (event) => {
+	console.log(event.code);
+	if(event.wasClean == false){
+		alert("연결이 끊겼습니다. 새로고침 후 다시 연결됩니다.");
+		location.reload();
+	}
+};
 
 function fn_send(){
 	param = new Object();
@@ -512,6 +540,8 @@ function fn_send(){
 	$('#msg').val('')
 }
 
+
+
 function onMessage(msg) {
 
 	var data = msg.data;
@@ -520,14 +550,14 @@ function onMessage(msg) {
 	var section = null;
 	var idx = null;
 
-	var arr = data.split(":");
+	var arr = JSON.parse(data);
 
 	let today = new Date();
 
-	idx = arr[3];
-	message = arr[2];
-	sessionId = arr[1];
-	section = arr[0];
+	idx = arr.idx;
+	message = arr.cn;
+	sessionId = arr.name;
+	section = arr.se;
 
 	var str = '<div class="media media-reply">'
 
@@ -556,11 +586,12 @@ function onMessage(msg) {
 		}
 
 	}else if(section === 'IN' ){
-
 		str +=  sessionId + "님이 입장하셨습니다."
 
-		var str2 = '<li><input type="checkbox" name="chattingUserIdx" style="display: none;" value="'+idx+'"><i class="fa fa-user" style="float: left;margin-top: 3px;color: blueviolet;"></i><span style="margin-left:10px;">'+sessionId+'</span></li>'
-		$('#user_list').append(str2);
+		if(sessionId != '${userName}'){
+			var str2 = '<li><input type="checkbox" name="chattingUserIdx" style="display: none;" value="'+idx+'"><i class="fa fa-user" style="float: left;margin-top: 3px;color: blueviolet;"></i><span style="margin-left:10px;">'+sessionId+'</span></li>'
+			$('#user_list').append(str2);
+		}
 
 	}else if(section === 'OUT' ){
 
@@ -653,6 +684,28 @@ function onMessage(msg) {
 	var div = document.getElementById("msgAreaDiv");
 	div.scrollTop = div.scrollHeight;
 
+
+}
+
+function useList(){
+	param = new Object();
+	$.ajax({
+		url      : "<c:url value='/chatting/userListAjax.do' />",
+		data     : param,
+		type     : "POST",
+		datatype : "json",
+		success  : function(data) {
+			var userList = data.userList;
+			userList.forEach(function(d){
+				var idx = d.SESSION_ID;
+				var sessionId = d.USER_NAME;
+				var str2 = '<li><input type="checkbox" name="chattingUserIdx" style="display: none;" value="'+idx+'"><i class="fa fa-user" style="float: left;margin-top: 3px;color: blueviolet;"></i><span style="margin-left:10px;">'+sessionId+'</span></li>'
+				$('#user_list').append(str2);
+
+			})
+
+		}
+	});
 
 }
 

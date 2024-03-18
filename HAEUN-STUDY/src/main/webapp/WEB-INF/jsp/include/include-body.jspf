@@ -41,3 +41,5 @@
 <script src="<c:url value='/plugins/moment/moment.min.js'/>"></script>
 
 <script src="<c:url value='/plugins/validation/jquery.validate.min.js'/>"></script>
+
+<script src="/plugins/sweetalert/js/sweetalert.min.js"></script>

@@ -43,12 +43,20 @@ public class ChattingHandler extends TextWebSocketHandler{
 		String cn = name + "님이 입장하셨습니다.";
 		String idx = session.getId();
 
+		JSONObject obj = new JSONObject();
+		obj.put("cn", cn);
+		obj.put("idx", idx);
+		obj.put("name", name);
+		obj.put("se", "IN");
+
+		String jsonToString = obj.toJSONString();
+
 //		userMap.put("MESSAGE", cn);
 //		//메세지 DB에 저장
 //		chattingService.insertChattingMessage(userMap);
 
 		for(WebSocketSession s : sessionList) {
-			s.sendMessage(new TextMessage("IN"+":"+name+ ":" + cn + ":"+ idx));
+			s.sendMessage(new TextMessage(jsonToString));
 		}
 
 	}
@@ -83,14 +91,20 @@ public class ChattingHandler extends TextWebSocketHandler{
 		}
 
 		if(se.equals("MSG")){
+			cn = cn.replace("\n", "<br>");
 			userMap.put("MESSAGE", cn);
 			//메세지 DB에 저장
 			chattingService.insertChattingMessage(userMap);
 		}
 
+		obj.put("name", name);
+		obj.put("idx", idx);
+
+		String jsonToString = obj.toJSONString();
+
 		for(WebSocketSession s : sessionList) {
 
-			s.sendMessage(new TextMessage(se+":" +name + ":" + cn + ":"+ idx));
+			s.sendMessage(new TextMessage(jsonToString));
 		}
 	}
 
@@ -116,8 +130,16 @@ public class ChattingHandler extends TextWebSocketHandler{
 //		//메세지 DB에 저장
 //		chattingService.insertChattingMessage(userMap);
 
+		JSONObject obj = new JSONObject();
+		obj.put("cn", cn);
+		obj.put("idx", idx);
+		obj.put("name", name);
+		obj.put("se", "OUT");
+
+		String jsonToString = obj.toJSONString();
+
 		for(WebSocketSession s : sessionList) {
-			s.sendMessage(new TextMessage("OUT"+":"+name+ ":" + cn + ":"+ idx));
+			s.sendMessage(new TextMessage(jsonToString));
 		}
 		System.out.println();
 	}

@@ -40,7 +40,7 @@ public class ChattingController {
 		logger.info("@ChatController, GET Chat / Username : " + name);
 
 		List<Map<String, Object>> todoList = chattingService.selectTodoList(commandMap.getMap());
-		List<Map<String, Object>> userList = chattingService.selectUserList(commandMap.getMap());
+		//List<Map<String, Object>> userList = chattingService.selectUserList(commandMap.getMap());
 		List<Map<String, Object>> msgList = chattingService.selectMsgList(commandMap.getMap());
 		List<Map<String, Object>> eventList = calenderService.selectEventList(commandMap.getMap());
 		List<Map<String, Object>> list = calenderService.selectCalenderCategory(commandMap.getMap());
@@ -48,7 +48,7 @@ public class ChattingController {
 		model.addAttribute("list",list);
 		model.addAttribute("userName", name);
 		model.addAttribute("todoList", todoList);
-		model.addAttribute("userList", userList);
+		//model.addAttribute("userList", userList);
 		model.addAttribute("msgList", msgList);
 		model.addAttribute("eventList",eventList);
 
@@ -74,6 +74,15 @@ public class ChattingController {
 	public String updateComplete(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
 
 		chattingService.updateComplete(commandMap.getMap());
+
+		return "jsonView";
+	}
+
+	@RequestMapping(value="chatting/userListAjax.do")
+	public String userListAjax(HttpServletRequest req, Model model,CommandMap commandMap) throws Exception{
+
+		List<Map<String, Object>> userList = chattingService.selectUserList(commandMap.getMap());
+		model.addAttribute("userList", userList);
 
 		return "jsonView";
 	}

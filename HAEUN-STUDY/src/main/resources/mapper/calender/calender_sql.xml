@@ -51,7 +51,7 @@
 			 	DELETE_YN
 			 ) VALUES(
 			  #{title},
-			  #{start},
+			  TO_DATE(#{start}, 'YYYY-MM-DD'),
 			  #{end},
 			  #{registId},
 			  CURRENT_DATE,
